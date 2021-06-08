@@ -11,6 +11,7 @@ public class RegisterFormDTO extends LoginFormDTO {
     private String lastName;
 
     private String verifyPassword;
+
     public String getFirstName() {
         return firstName;
     }
@@ -26,7 +27,6 @@ public class RegisterFormDTO extends LoginFormDTO {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 
     public String getVerifyPassword() {
         return verifyPassword;

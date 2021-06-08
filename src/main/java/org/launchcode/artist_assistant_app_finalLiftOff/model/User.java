@@ -1,5 +1,6 @@
 package org.launchcode.artist_assistant_app_finalLiftOff.model;
 
+import org.springframework.context.annotation.Role;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name="user")
 public class User extends AbstractEntity {
+
     @NotNull
     private String firstName;
 
@@ -21,15 +23,23 @@ public class User extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-    public User() {}
+    private final String role;
+
+    @ManyToMany
+    private Set<Role> roles;
+
+    public User(String firstName, String lastName, String email, String role) {
+        this.role = role;
+    }
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.pwHash = encoder.encode(password);
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -58,6 +68,14 @@ public class User extends AbstractEntity {
 
     public boolean isMatchingPassword(String password) {
         return encoder.matches(password, pwHash);
-    }
 
     }
+
+    public Set<Role> getRoles(){
+        return roles;
+    }
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    }
+

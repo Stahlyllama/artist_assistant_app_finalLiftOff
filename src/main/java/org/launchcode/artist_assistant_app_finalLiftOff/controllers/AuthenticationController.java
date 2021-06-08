@@ -79,7 +79,7 @@ public class AuthenticationController extends HttpServlet {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getFirstName(),
+        User newUser =  new User(registerFormDTO.getFirstName(),
                 registerFormDTO.getLastName(),
                 registerFormDTO.getEmail(),
                 registerFormDTO.getPassword());
