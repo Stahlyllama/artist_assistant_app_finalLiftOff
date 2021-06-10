@@ -1,11 +1,14 @@
 package org.launchcode.artist_assistant_app_finalLiftOff.model.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class LoginFormDTO {
+    @Email(message="Invalid Email")
     @NotNull
+    @NotBlank
     private String email;
 
     @NotNull

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Artist Assistant Application</title>
+
+</head>
+<body><h1 th:text="#header"; style="color:red"> Artist Assistant Application: A business focused tool for handling the things that can get out of hand.</h1>
+<br>
+<h2 th:text="#{label.form.title}">Login Form</h2>
+<form action="/" th:object="${user}" method="POST" enctype="utf8">
+    <div>
+        <label th:text="#{label.user.email}">Email</label>
+        <input type="email" th:field="*{email}"/>
+        <p th:each="error : ${#fields.errors('email')}"
+           th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.user.password}">Password</label>
+        <input type="password" th:field="*{password}"/>
+        <p th:each="error : ${#fields.errors('password')}"
+           th:text="${error}">Validation error</p>
+    </div>
+    <button type="submit" th:text="#{label.form.submit}">Submit</button>
+</form>
+
+<a th:href="@{/login.html}" th:text="#{label.form.loginLink}">Don't have an account?  Register Now!  </a>
+</body>
+</html>
